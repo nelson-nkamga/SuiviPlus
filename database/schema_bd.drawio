@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3508" pageHeight="2480" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+    <!-- ═══════════════════════════════════════════════════
+         LÉGENDE
+    ═══════════════════════════════════════════════════ -->
+    <mxCell id="leg0" value="" style="rounded=1;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+      <mxGeometry x="40" y="40" width="200" height="140" as="geometry"/>
+    </mxCell>
+    <mxCell id="leg1" value="LÉGENDE" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="40" y="44" width="200" height="20" as="geometry"/>
+    </mxCell>
+    <mxCell id="leg2" value="" style="rounded=0;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="52" y="74" width="20" height="14" as="geometry"/>
+    </mxCell>
+    <mxCell id="leg2t" value="Table principale" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="80" y="72" width="150" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="leg3" value="" style="rounded=0;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="52" y="98" width="20" height="14" as="geometry"/>
+    </mxCell>
+    <mxCell id="leg3t" value="Table intermédiaire N:N" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="80" y="96" width="150" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="leg4" value="" style="rounded=0;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="52" y="122" width="20" height="14" as="geometry"/>
+    </mxCell>
+    <mxCell id="leg4t" value="Table polymorphique / audit" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="80" y="120" width="150" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="leg5" value="" style="rounded=0;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+      <mxGeometry x="52" y="146" width="20" height="14" as="geometry"/>
+    </mxCell>
+    <mxCell id="leg5t" value="Table messagerie" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;" vertex="1" parent="1">
+      <mxGeometry x="80" y="144" width="150" height="18" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════════
+         1. UTILISATEUR
+    ═══════════════════════════════════════════════════ -->
+    <mxCell id="t_user_hdr" value="&lt;b&gt;UTILISATEUR&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="280" y="40" width="220" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="t_user_body" value="🔑 id : UUID PK&#xa;nom : VARCHAR(100)&#xa;prenom : VARCHAR(100)&#xa;email : VARCHAR(255) UNIQUE&#xa;mot_de_passe_hash : VARCHAR(255)&#xa;avatar_url : VARCHAR(500)&#xa;est_actif : BOOLEAN DEFAULT TRUE&#xa;date_inscription : TIMESTAMP&#xa;created_at : TIMESTAMP&#xa;updated_at : TIMESTAMP" style="rounded=0;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;spacingLeft=8;fontSize=10;verticalAlign=top;" vertex="1" parent="1">
+      <mxGeometry x="280" y="70" width="220" height="160" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════════
+         2. ROLE
+    ═══════════════════════════════════════════════════ -->
+    <mxCell id="t_role_hdr" value="&lt;b&gt;ROLE&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="560" y="40" width="200" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="t_role_body" value="🔑 id : UUID PK&#xa;nom : VARCHAR(100) UNIQUE&#xa;description : TEXT&#xa;niveau : INT (0-100)&#xa;created_at : TIMESTAMP" style="rounded=0;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;spacingLeft=8;fontSize=10;verticalAlign=top;" vertex="1" parent="1">
+      <mxGeometry x="560" y="70" width="200" height="100" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════════
+         3. PERMISSION
+    ═══════════════════════════════════════════════════ -->
+    <mxCell id="t_perm_hdr" value="&lt;b&gt;PERMISSION&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="830" y="40" width="200" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="t_perm_body" value="🔑 id : UUID PK&#xa;ressource : VARCHAR(100)&#xa;action : VARCHAR(50)&#xa;  CHECK IN (create,read,update,delete)&#xa;description : TEXT&#xa;UNIQUE (ressource, action)" style="rounded=0;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;spacingLeft=8;fontSize=10;verticalAlign=top;" vertex="1" parent="1">
+      <mxGeometry x="830" y="70" width="200" height="100" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════════
+         4. ROLE_PERMISSION  (N:N)
+    ═══════════════════════════════════════════════════ -->
+    <mxCell id="t_rp_hdr" value="&lt;b&gt;ROLE_PERMISSION&lt;/b&gt; [N:N]" style="rounded=0;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="700" y="240" width="220" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="t_rp_body" value="🔑 role_id : UUID PK,FK → ROLE&#xa;🔑 permission_id : UUID PK,FK → PERMISSION&#xa;created_at : TIMESTAMP" style="rounded=0;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;align=left;spacingLeft=8;fontSize=10;verticalAlign=top;" vertex="1" parent="1">
+      <mxGeometry x="700" y="270" width="220" height="60" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════════
+         5. USER_ROLE  (N:N)
+    ═══════════════════════════════════════════════════ -->
+    <mxCell id="t_ur_hdr" value="&lt;b&gt;USER_ROLE&lt;/b&gt; [N:N]" style="rounded=0;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="420" y="240" width="220" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="t_ur_body" value="🔑 utilisateur_id : UUID PK,FK → UTILISATEUR&#xa;🔑 role_id : UUID PK,FK → ROLE&#xa;attribue_le : TIMESTAMP&#xa;attribue_par : UUID FK → UTILISATEUR" style="rounded=0;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;align=left;spacingLeft=8;fontSize=10;verticalAlign=top;" vertex="1" parent="1">
+      <mxGeometry x="420" y="270" width="220" height="80" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════════
+         6. PROJET
+    ═══════════════════════════════════════════════════ -->
+    <mxCell id="t_proj_hdr" value="&lt;b&gt;PROJET&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="280" y="440" width="220" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="t_proj_body" value="🔑 id : UUID PK&#xa;nom : VARCHAR(200)&#xa;description : TEXT&#xa;statut : ENUM(actif, archive, termine)&#xa;createur_id : UUID FK → UTILISATEUR&#xa;date_debut : DATE&#xa;date_fin_prevue : DATE&#xa;date_fin_reelle : DATE&#xa;created_at : TIMESTAMP&#xa;updated_at : TIMESTAMP" style="rounded=0;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;spacingLeft=8;fontSize=10;verticalAlign=top;" vertex="1" parent="1">
+      <mxGeometry x="280" y="470" width="220" height="180" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════════
+         7. USER_PROJET  (N:N)
+    ═══════════════════════════════════════════════════ -->
+    <mxCell id="t_up_hdr" value="&lt;b&gt;USER_PROJET&lt;/b&gt; [N:N]" style="rounded=0;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="560" y="440" width="220" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="t_up_body" value="🔑 utilisateur_id : UUID PK,FK → UTILISATEUR&#xa;🔑 projet_id : UUID PK,FK → PROJET&#xa;role_projet : ENUM(chef_projet,&#xa;  contributeur, observateur)&#xa;rejoint_le : TIMESTAMP" style="rounded=0;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;align=left;spacingLeft=8;fontSize=10;verticalAlign=top;" vertex="1" parent="1">
+      <mxGeometry x="560" y="470" width="220" height="100" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════════
+         8. TACHE
+    ═══════════════════════════════════════════════════ -->
+    <mxCell id="t_tache_hdr" value="&lt;b&gt;TACHE&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="280" y="720" width="220" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="t_tache_body" value="🔑 id : UUID PK&#xa;projet_id : UUID FK → PROJET&#xa;parent_tache_id : UUID FK → TACHE (self)&#xa;createur_id : UUID FK → UTILISATEUR&#xa;titre : VARCHAR(300)&#xa;description : TEXT&#xa;statut : ENUM(a_faire, en_cours,&#xa;  terminee, bloquee)&#xa;priorite : ENUM(basse, moyenne,&#xa;  haute, critique)&#xa;estimation_heures : INT&#xa;date_echeance : DATE&#xa;date_debut_reelle : TIMESTAMP&#xa;date_fin_reelle : TIMESTAMP&#xa;created_at : TIMESTAMP&#xa;updated_at : TIMESTAMP" style="rounded=0;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;spacingLeft=8;fontSize=10;verticalAlign=top;" vertex="1" parent="1">
+      <mxGeometry x="280" y="750" width="220" height="280" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════════
+         9. USER_TACHE  (N:N)
+    ═══════════════════════════════════════════════════ -->
+    <mxCell id="t_ut_hdr" value="&lt;b&gt;USER_TACHE&lt;/b&gt; [N:N]" style="rounded=0;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="560" y="720" width="220" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="t_ut_body" value="🔑 utilisateur_id : UUID PK,FK → UTILISATEUR&#xa;🔑 tache_id : UUID PK,FK → TACHE&#xa;type_assignation : VARCHAR(50)&#xa;  CHECK IN (responsable,&#xa;  reviseur, observateur)&#xa;assigne_le : TIMESTAMP&#xa;assigne_par : UUID FK → UTILISATEUR" style="rounded=0;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;align=left;spacingLeft=8;fontSize=10;verticalAlign=top;" vertex="1" parent="1">
+      <mxGeometry x="560" y="750" width="220" height="130" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════════
+         10. COMMENTAIRE
+    ═══════════════════════════════════════════════════ -->
+    <mxCell id="t_com_hdr" value="&lt;b&gt;COMMENTAIRE&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="280" y="1080" width="220" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="t_com_body" value="🔑 id : UUID PK&#xa;tache_id : UUID FK → TACHE&#xa;auteur_id : UUID FK → UTILISATEUR&#xa;parent_commentaire_id : UUID FK → COMMENTAIRE&#xa;contenu : TEXT&#xa;est_modifie : BOOLEAN DEFAULT FALSE&#xa;created_at : TIMESTAMP&#xa;updated_at : TIMESTAMP" style="rounded=0;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;spacingLeft=8;fontSize=10;verticalAlign=top;" vertex="1" parent="1">
+      <mxGeometry x="280" y="1110" width="220" height="160" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════════
+         11. PIECE_JOINTE  (polymorphique)
+    ═══════════════════════════════════════════════════ -->
+    <mxCell id="t_pj_hdr" value="&lt;b&gt;PIECE_JOINTE&lt;/b&gt; ◈ polymorphique" style="rounded=0;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="560" y="1080" width="240" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="t_pj_body" value="🔑 id : UUID PK&#xa;nom_fichier : VARCHAR(255)&#xa;chemin_stockage : VARCHAR(500)&#xa;taille_octets : BIGINT&#xa;type_mime : VARCHAR(100)&#xa;tache_id : UUID FK → TACHE (nullable)&#xa;commentaire_id : UUID FK → COMMENTAIRE (nullable)&#xa;uploade_par : UUID FK → UTILISATEUR&#xa;created_at : TIMESTAMP&#xa;⚠ CHECK : exactement une FK non NULL" style="rounded=0;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;align=left;spacingLeft=8;fontSize=10;verticalAlign=top;" vertex="1" parent="1">
+      <mxGeometry x="560" y="1110" width="240" height="190" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════════
+         12. NOTIFICATION  (polymorphique)
+    ═══════════════════════════════════════════════════ -->
+    <mxCell id="t_notif_hdr" value="&lt;b&gt;NOTIFICATION&lt;/b&gt; ◈ polymorphique" style="rounded=0;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="860" y="440" width="240" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="t_notif_body" value="🔑 id : UUID PK&#xa;destinataire_id : UUID FK → UTILISATEUR&#xa;declencheur_id : UUID FK → UTILISATEUR&#xa;type_notif : ENUM(TACHE_ASSIGNEE, ...)&#xa;titre : VARCHAR(200)&#xa;message : TEXT&#xa;lien : VARCHAR(500)&#xa;est_lu : BOOLEAN DEFAULT FALSE&#xa;lu_le : TIMESTAMP&#xa;tache_id : UUID FK (nullable)&#xa;projet_id : UUID FK (nullable)&#xa;commentaire_id : UUID FK (nullable)&#xa;created_at : TIMESTAMP&#xa;⚠ CHECK : au plus une FK non NULL" style="rounded=0;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;align=left;spacingLeft=8;fontSize=10;verticalAlign=top;" vertex="1" parent="1">
+      <mxGeometry x="860" y="470" width="240" height="260" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════════
+         13. CONVERSATION
+    ═══════════════════════════════════════════════════ -->
+    <mxCell id="t_conv_hdr" value="&lt;b&gt;CONVERSATION&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="1160" y="40" width="220" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="t_conv_body" value="🔑 id : UUID PK&#xa;type : ENUM(privee, groupe, projet)&#xa;titre : VARCHAR(200)&#xa;projet_id : UUID FK → PROJET (nullable)&#xa;createur_id : UUID FK → UTILISATEUR&#xa;created_at : TIMESTAMP&#xa;updated_at : TIMESTAMP" style="rounded=0;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;align=left;spacingLeft=8;fontSize=10;verticalAlign=top;" vertex="1" parent="1">
+      <mxGeometry x="1160" y="70" width="220" height="140" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════════
+         14. PARTICIPANT  (N:N)
+    ═══════════════════════════════════════════════════ -->
+    <mxCell id="t_part_hdr" value="&lt;b&gt;PARTICIPANT&lt;/b&gt; [N:N]" style="rounded=0;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="1160" y="270" width="220" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="t_part_body" value="🔑 utilisateur_id : UUID PK,FK → UTILISATEUR&#xa;🔑 conversation_id : UUID PK,FK → CONVERSATION&#xa;rejoint_le : TIMESTAMP" style="rounded=0;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;align=left;spacingLeft=8;fontSize=10;verticalAlign=top;" vertex="1" parent="1">
+      <mxGeometry x="1160" y="300" width="220" height="70" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════════
+         15. MESSAGE
+    ═══════════════════════════════════════════════════ -->
+    <mxCell id="t_msg_hdr" value="&lt;b&gt;MESSAGE&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="1160" y="440" width="220" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="t_msg_body" value="🔑 id : UUID PK&#xa;conversation_id : UUID FK → CONVERSATION&#xa;expediteur_id : UUID FK → UTILISATEUR&#xa;contenu : TEXT&#xa;est_lu : BOOLEAN DEFAULT FALSE&#xa;envoye_le : TIMESTAMP&#xa;updated_at : TIMESTAMP" style="rounded=0;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;align=left;spacingLeft=8;fontSize=10;verticalAlign=top;" vertex="1" parent="1">
+      <mxGeometry x="1160" y="470" width="220" height="140" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════════
+         16. HISTORIQUE_MODIFICATION  (audit)
+    ═══════════════════════════════════════════════════ -->
+    <mxCell id="t_hist_hdr" value="&lt;b&gt;HISTORIQUE_MODIFICATION&lt;/b&gt; ◈ immuable" style="rounded=0;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="860" y="760" width="260" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="t_hist_body" value="🔑 id : UUID PK&#xa;entite_type : ENUM(TACHE, PROJET, COMMENTAIRE)&#xa;entite_id : UUID (pas de FK stricte)&#xa;modifie_par : UUID FK → UTILISATEUR&#xa;type_action : ENUM(CREATE, UPDATE,&#xa;  DELETE, STATUS_CHANGE)&#xa;champ_modifie : VARCHAR(100)&#xa;ancienne_valeur : TEXT&#xa;nouvelle_valeur : TEXT&#xa;commentaire : TEXT&#xa;modifie_le : TIMESTAMP&#xa;⚠ Jamais de UPDATE ni DELETE" style="rounded=0;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;align=left;spacingLeft=8;fontSize=10;verticalAlign=top;" vertex="1" parent="1">
+      <mxGeometry x="860" y="790" width="260" height="220" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════════
+         RELATIONS (flèches)
+    ═══════════════════════════════════════════════════ -->
+
+    <!-- UTILISATEUR → USER_ROLE -->
+    <mxCell id="r1" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;exitX=1;exitY=0.5;entryX=0;entryY=0.3;" edge="1" parent="1" source="t_user_body" target="t_ur_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r1l" value="1:N" style="edgeLabel;fontSize=9;align=center;verticalAlign=bottom;" vertex="1" connectable="0" parent="r1">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- ROLE → USER_ROLE -->
+    <mxCell id="r2" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="t_role_body" target="t_ur_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r2l" value="1:N" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r2">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- ROLE → ROLE_PERMISSION -->
+    <mxCell id="r3" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="t_role_body" target="t_rp_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r3l" value="1:N" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r3">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- PERMISSION → ROLE_PERMISSION -->
+    <mxCell id="r4" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="t_perm_body" target="t_rp_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r4l" value="1:N" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r4">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- UTILISATEUR → PROJET (createur) -->
+    <mxCell id="r5" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;dashed=1;" edge="1" parent="1" source="t_user_body" target="t_proj_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r5l" value="créateur 1:N" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r5">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- UTILISATEUR → USER_PROJET -->
+    <mxCell id="r6" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="t_user_body" target="t_up_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r6l" value="1:N" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r6">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- PROJET → USER_PROJET -->
+    <mxCell id="r7" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="t_proj_body" target="t_up_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r7l" value="1:N" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r7">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- PROJET → TACHE -->
+    <mxCell id="r8" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="t_proj_body" target="t_tache_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r8l" value="1:N" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r8">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- TACHE → USER_TACHE -->
+    <mxCell id="r9" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="t_tache_body" target="t_ut_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r9l" value="1:N" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r9">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- UTILISATEUR → USER_TACHE -->
+    <mxCell id="r10" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="t_user_body" target="t_ut_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r10l" value="1:N" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r10">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- TACHE → COMMENTAIRE -->
+    <mxCell id="r11" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="t_tache_body" target="t_com_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r11l" value="1:N" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r11">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- UTILISATEUR → COMMENTAIRE -->
+    <mxCell id="r12" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="t_user_body" target="t_com_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r12l" value="1:N auteur" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r12">
+      <mxGeometry relative="0.3" as="geometry"/>
+    </mxCell>
+
+    <!-- TACHE → PIECE_JOINTE -->
+    <mxCell id="r13" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERzeroToOne;dashed=1;" edge="1" parent="1" source="t_tache_body" target="t_pj_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r13l" value="0..1:N ◈" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r13">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- COMMENTAIRE → PIECE_JOINTE -->
+    <mxCell id="r14" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERzeroToOne;dashed=1;" edge="1" parent="1" source="t_com_body" target="t_pj_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r14l" value="0..1:N ◈" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r14">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- UTILISATEUR → NOTIFICATION (destinataire) -->
+    <mxCell id="r15" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="t_user_hdr" target="t_notif_hdr">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r15l" value="1:N destinataire" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r15">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- TACHE → NOTIFICATION -->
+    <mxCell id="r16" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERzeroToOne;dashed=1;" edge="1" parent="1" source="t_tache_body" target="t_notif_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r16l" value="◈" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r16">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- PROJET → NOTIFICATION -->
+    <mxCell id="r17" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERzeroToOne;dashed=1;" edge="1" parent="1" source="t_proj_body" target="t_notif_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r17l" value="◈" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r17">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- UTILISATEUR → CONVERSATION (créateur) -->
+    <mxCell id="r18" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;dashed=1;" edge="1" parent="1" source="t_user_hdr" target="t_conv_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r18l" value="créateur 1:N" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r18">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- PROJET → CONVERSATION -->
+    <mxCell id="r19" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERzeroToOne;dashed=1;" edge="1" parent="1" source="t_proj_body" target="t_conv_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r19l" value="0..1:N" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r19">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- CONVERSATION → PARTICIPANT -->
+    <mxCell id="r20" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="t_conv_body" target="t_part_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r20l" value="1:N" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r20">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- UTILISATEUR → PARTICIPANT -->
+    <mxCell id="r21" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="t_user_hdr" target="t_part_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r21l" value="1:N" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r21">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- CONVERSATION → MESSAGE -->
+    <mxCell id="r22" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="t_conv_body" target="t_msg_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r22l" value="1:N" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r22">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- UTILISATEUR → MESSAGE (expéditeur) -->
+    <mxCell id="r23" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;dashed=1;" edge="1" parent="1" source="t_user_hdr" target="t_msg_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r23l" value="1:N expéditeur" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r23">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- UTILISATEUR → HISTORIQUE -->
+    <mxCell id="r24" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;" edge="1" parent="1" source="t_user_body" target="t_hist_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r24l" value="1:N modifie_par" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r24">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- TACHE → HISTORIQUE (polymorphique) -->
+    <mxCell id="r25" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;dashed=1;" edge="1" parent="1" source="t_tache_body" target="t_hist_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r25l" value="◈ entite_type=TACHE" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r25">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- PROJET → HISTORIQUE (polymorphique) -->
+    <mxCell id="r26" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERone;dashed=1;" edge="1" parent="1" source="t_proj_body" target="t_hist_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r26l" value="◈ entite_type=PROJET" style="edgeLabel;fontSize=9;" vertex="1" connectable="0" parent="r26">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- MESSAGE → NOTIFICATION (trigger) -->
+    <mxCell id="r27" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;startArrow=none;dashed=1;strokeColor=#b85450;" edge="1" parent="1" source="t_msg_body" target="t_notif_body">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="r27l" value="trigger notif" style="edgeLabel;fontSize=9;fontColor=#b85450;" vertex="1" connectable="0" parent="r27">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- TACHE → TACHE (auto-référence sous-tâches) -->
+    <mxCell id="r28" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERzeroToOne;exitX=1;exitY=0.2;entryX=1;entryY=0.8;strokeColor=#6c8ebf;" edge="1" parent="1" source="t_tache_body" target="t_tache_body">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="540" y="780"/>
+          <mxPoint x="540" y="990"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="r28l" value="sous-tâche (self)" style="edgeLabel;fontSize=9;fontColor=#6c8ebf;" vertex="1" connectable="0" parent="r28">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+    <!-- COMMENTAIRE → COMMENTAIRE (auto-référence) -->
+    <mxCell id="r29" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERmany;startArrow=ERzeroToOne;exitX=0;exitY=0.3;entryX=0;entryY=0.8;strokeColor=#6c8ebf;" edge="1" parent="1" source="t_com_body" target="t_com_body">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="240" y="1130"/>
+          <mxPoint x="240" y="1240"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="r29l" value="réponse (self)" style="edgeLabel;fontSize=9;fontColor=#6c8ebf;" vertex="1" connectable="0" parent="r29">
+      <mxGeometry relative="0.5" as="geometry"/>
+    </mxCell>
+
+  </root>
+</mxGraphModel>
